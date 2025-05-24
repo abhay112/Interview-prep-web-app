@@ -15,14 +15,12 @@ export default function QuestionSelect({ value, onChange }) {
 
   return (
     <div style={{ margin: '1rem 0', display: 'flex', justifyContent: 'center', width: '100%', gap: '1rem' }}>
-      {/* Category Dropdown */}
       <Select
         options={categoryOptions}
         values={categoryOptions.filter(opt => opt.value === selectedCategory)}
         onChange={vals => {
           const newCategory = vals[0]?.value;
           setSelectedCategory(newCategory);
-          // Optionally reset question selection on category change
           if (categoriesQuestions[newCategory]?.[0]) {
             onChange(categoriesQuestions[newCategory][0].id);
           } else {
@@ -38,7 +36,7 @@ export default function QuestionSelect({ value, onChange }) {
         values={selectedQuestion ? [{ value: selectedQuestion.id, label: selectedQuestion.label }] : []}
         onChange={vals => onChange(vals[0]?.value)}
         placeholder="Select a question..."
-        style={{ width: 300 }}
+        style={{ width: "fit-content" }}
       />
     </div>
   );

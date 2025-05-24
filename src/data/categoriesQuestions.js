@@ -2,11 +2,11 @@
 export const categoriesQuestions = {
   javascript: [
     { id: 'q1', label: 'What is debouncing?' },
-    { id: 'js2', label: 'Explain closures in JavaScript.' }
+    { id: 'q2', label: 'Explain closures in JavaScript.' }
   ],
   react: [
-    { id: 'react1', label: 'What are hooks?' },
-    { id: 'react2', label: 'Explain the virtual DOM.' }
+    { id: 'rct1', label: 'InFinite Scroll' },
+    { id: 'rct2', label: 'Explain the virtual DOM.' }
   ],
   html: [
     { id: 'html1', label: 'What is semantic HTML?' },

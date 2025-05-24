@@ -111,3 +111,63 @@ html, body {
 *::-webkit-scrollbar-corner {
   background: #23272e;
 }
+
+
+
+/* Dark theme overrides (as before) */
+.react-dropdown-select,
+.react-dropdown-select-dropdown {
+  background: #23272e !important;
+  color: #f5f6fa !important;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.react-dropdown-select-dropdown {
+  box-shadow: 0 4px 16px #000a;
+  padding: 0.5em 0;
+  /* Make dropdown scrollable if too tall */
+  max-height: 260px;           /* Adjust as needed */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #23272e;
+}
+
+.react-dropdown-select-item {
+  background: transparent !important;
+  color: #f5f6fa !important;
+  padding: 0.5em 1em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.react-dropdown-select-item:hover,
+.react-dropdown-select-item.selected {
+  background: #2d3240 !important;
+  color: #61dafb !important;
+}
+
+.react-dropdown-select-content {
+  background: #23272e !important;
+  color: #f5f6fa !important;
+}
+
+.react-dropdown-select-input {
+  background: #23272e !important;
+  color: #f5f6fa !important;
+}
+
+.react-dropdown-select-dropdown-handle {
+  color: #61dafb !important;
+}
+
+/* Custom scrollbar for Chrome, Edge, Safari */
+.react-dropdown-select-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+.react-dropdown-select-dropdown::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+.react-dropdown-select-dropdown::-webkit-scrollbar-track {
+  background: #23272e;
+}

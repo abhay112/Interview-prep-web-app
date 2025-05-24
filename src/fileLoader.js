@@ -1,10 +1,14 @@
 // src/fileLoader.js
 export const files = import.meta.glob(
-  '/src/components/**/*.{js,jsx,ts,tsx}', // add more patterns as needed
+  '/src/components/**/*.{js,jsx,ts,tsx}',
   { as: 'raw', eager: true }
 );
-// If you have utils too:
+// Add other folders as needed
 Object.assign(files, import.meta.glob(
-  '/src/utils/**/*.{js,jsx,ts,tsx}',
+  '/src/hooks/**/*.{js,jsx,ts,tsx}',
+  { as: 'raw', eager: true }
+));
+Object.assign(files, import.meta.glob(
+  '/src/data/**/*.{js,jsx,ts,tsx}',
   { as: 'raw', eager: true }
 ));
