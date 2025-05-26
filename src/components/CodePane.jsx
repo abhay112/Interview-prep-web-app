@@ -19,7 +19,7 @@ export default function CodePane({ files = [] , link}) {
     }}>
        {link && (
         <div style={{ marginBottom: 16 }}>
-          <Link to={link} style={{ color: 'var(--primary-accent)', fontWeight: 600 }}>
+          <Link to={`/${link}`} style={{ color: 'var(--primary-accent)', fontWeight: 600 }}>
             Open this question as a page
           </Link>
         </div>

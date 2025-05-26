@@ -1,15 +1,17 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import React, { useState, Suspense } from 'react';
 
-export default function OutputPane({ screenshots = [] }) {
-  const [openIdx, setOpenIdx] = useState(null);
+// If you want to use dynamic imports, you can map component names to import functions
+const componentMap = {
+  InfiniteScroll: React.lazy(() => import('../components/InfiniteScroll')),
+  // Add more mappings as needed
+};
 
-  // Filter only valid image sources
+export default function OutputPane({ screenshots = [], uiComponentName }) {
+  const [tab, setTab] = useState('images');
   const images = Array.isArray(screenshots) ? screenshots.filter(src => typeof src === 'string') : [];
 
-  const isOpen = openIdx !== null && images[openIdx];
+  // Dynamically resolve the UI component if present
+  const UIComponent = uiComponentName && componentMap[uiComponentName] ? componentMap[uiComponentName] : null;
 
   return (
     <div style={{
@@ -20,6 +22,69 @@ export default function OutputPane({ screenshots = [] }) {
       borderRadius: 'var(--border-radius)',
       boxShadow: '0 1px 8px #0002'
     }}>
+      {/* Tab Buttons */}
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        <button
+          onClick={() => setTab('images')}
+          style={{
+            padding: '8px 16px',
+            borderRadius: 6,
+            border: 'none',
+            background: tab === 'images' ? 'var(--primary-accent)' : 'var(--surface)',
+            color: tab === 'images' ? '#181a1b' : 'var(--text)',
+            fontWeight: 600,
+            cursor: 'pointer'
+          }}
+        >
+          Images
+        </button>
+        <button
+          onClick={() => setTab('ui')}
+          style={{
+            padding: '8px 16px',
+            borderRadius: 6,
+            border: 'none',
+            background: tab === 'ui' ? 'var(--primary-accent)' : 'var(--surface)',
+            color: tab === 'ui' ? '#181a1b' : 'var(--text)',
+            fontWeight: 600,
+            cursor: 'pointer'
+          }}
+        >
+          UI
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      {tab === 'images' ? (
+        images.length > 0 ? (
+          <ImagesGallery images={images} />
+        ) : (
+          <div style={{ color: 'var(--text-muted)', padding: 32, textAlign: 'center' }}>
+            Images not present.
+          </div>
+        )
+      ) : (
+        UIComponent ? (
+          <Suspense fallback={<div style={{ color: 'var(--text-muted)', padding: 32 }}>Loading UI...</div>}>
+            <UIComponent />
+          </Suspense>
+        ) : (
+          <div style={{ color: 'var(--text-muted)', padding: 32, textAlign: 'center' }}>
+            UI not present.
+          </div>
+        )
+      )}
+    </div>
+  );
+}
+
+// Helper component for image gallery with modal
+function ImagesGallery({ images }) {
+  const [openIdx, setOpenIdx] = useState(null);
+  const isOpen = openIdx !== null && images[openIdx];
+
+  return (
+    <>
       {images.map((src, idx) => (
         <img
           key={idx}
@@ -36,7 +101,6 @@ export default function OutputPane({ screenshots = [] }) {
           onClick={() => setOpenIdx(idx)}
         />
       ))}
-
       {isOpen && (
         <div
           onClick={() => setOpenIdx(null)}
@@ -59,58 +123,10 @@ export default function OutputPane({ screenshots = [] }) {
               borderRadius: 8,
               boxShadow: '0 0 12px rgba(255,255,255,0.2)'
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           />
         </div>
       )}
-
-      {screenshots.map((fileObj, idx) => (
-        typeof fileObj === 'object' && fileObj !== null && fileObj.file ? (
-          <div
-            key={fileObj.file}
-            style={{
-              marginBottom: 32,
-              background: idx % 2 === 0 ? 'rgba(100,108,255,0.03)' : 'rgba(97,218,251,0.02)',
-              borderRadius: 8,
-              padding: 16,
-              boxShadow: '0 1px 6px #0001'
-            }}
-          >
-            {fileObj.heading && (
-              <div style={{
-                fontWeight: 600,
-                fontSize: 18,
-                color: 'var(--primary-accent)',
-                marginBottom: 8,
-                letterSpacing: 0.5
-              }}>
-                {fileObj.heading}
-              </div>
-            )}
-            <div style={{
-              fontSize: '0.95em',
-              color: '#888',
-              marginBottom: 6
-            }}>
-              <strong>File:</strong> {fileObj.file}
-            </div>
-            <SyntaxHighlighter
-              language={fileObj.language}
-              style={vscDarkPlus}
-              showLineNumbers
-              wrapLongLines
-              customStyle={{
-                borderRadius: 8,
-                fontSize: 14,
-                margin: 0,
-                background: 'var(--surface)'
-              }}
-            >
-              {fileObj.content || 'Loading...'}
-            </SyntaxHighlighter>
-          </div>
-        ) : null
-      ))}
-    </div>
+    </>
   );
 }

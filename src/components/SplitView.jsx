@@ -6,7 +6,7 @@ export default function SplitView({ left, right }) {
     <SplitPane
       split="vertical"
       minSize={150}
-      defaultSize="90%"             
+      defaultSize="60%"             
       style={{ position: 'relative', height: '100%' }}
       paneStyle={{ overflow: 'auto' }}
       resizerStyle={{

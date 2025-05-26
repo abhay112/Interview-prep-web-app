@@ -25,7 +25,7 @@ export default function Home() {
         {selected?.files &&
           <SplitView
             left={<CodePane files={filesWithContent} link={selected.link} />}
-            right={<OutputPane screenshots={selected.screenshots} />}
+            right={<OutputPane screenshots={selected.screenshots} uiComponentName={selected.link} />}
           />}
       </div>
     </div>

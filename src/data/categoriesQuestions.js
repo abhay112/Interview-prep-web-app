@@ -1,8 +1,12 @@
 // src/data/categoriesQuestions.js
 export const categoriesQuestions = {
   javascript: [
-    { id: 'q1', label: 'What is debouncing?' },
-    { id: 'q2', label: 'Explain closures in JavaScript.' }
+    { id: 'q1', label: 'How Iteration works in JavaScript' },
+    { id: 'q2', label: 'Promise Async' },
+    { id: 'q', label: '' },
+    { id: 'q', label: '' },
+
+
   ],
   react: [
     { id: 'rct1', label: 'InFinite Scroll' },

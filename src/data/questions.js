@@ -1,32 +1,88 @@
 export const questions = [
   {
     id: 'q1',
-    label: 'Simple JSX Button',
-    link: '/simple-jsx-button',
+    label: 'Iteration in JavaScript',
+    link: null,
     files: [
       {
-        heading: 'Button Component',
-        language: 'jsx',
-        file: '/src/components/CodePane.jsx',
-      },
-      {
-        heading: 'Custom Hook',
+        heading: 'Iteration in JavaScript',
         language: 'js',
-        file: '/src/hooks/useCustomHook.js',
-    },
+        file: '/src/components/Javascript/Iteration.js',
+      },
     ],
     screenshots: [
-      '/assets/screenshots/1.png',
-      '/assets/screenshots/2.png',
-      '/assets/screenshots/3.png',
-      '/assets/screenshots/4.png',
+      '/assets/Javascript/Iteration.png',
+    ]
+  },
+
+   {
+    id: 'q2',
+    label: 'PromiseAsyincSettimeout.js',
+    link: null,
+    files: [
+      {
+        heading: '',
+        language: 'js',
+        file: '/src/components/Javascript/PromiseAsyincSettimeout.js',
+      },
+    ],
+    screenshots: [
+      '/assets/Javascript/PromiseAsyincSettimeout',
     ]
   },
 
   {
+    id: 'q',
+    label: '',
+    link: null,
+    files: [
+      {
+        heading: '',
+        language: 'js',
+        file: '/src/components/Javascript/',
+      },
+    ],
+    screenshots: [
+      '/assets/Javascript/',
+    ]
+  },
+  {
+    id: 'q',
+    label: '',
+    link: null,
+    files: [
+      {
+        heading: '',
+        language: 'js',
+        file: '/src/components/Javascript/',
+      },
+    ],
+    screenshots: [
+      '/assets/Javascript/',
+    ]
+  },
+  {
+    id: 'q',
+    label: '',
+    link: null,
+    files: [
+      {
+        heading: '',
+        language: 'js',
+        file: '/src/components/Javascript/',
+      },
+    ],
+    screenshots: [
+      '/assets/Javascript/',
+    ]
+  },
+
+  
+
+  {
     id: 'rct1',
     label: 'Infinite Scroll Example',
-    link: '/InfiniteScroll',
+    link: 'InfiniteScroll',
     files: [
       {
         heading: 'Infinite Scroll',
