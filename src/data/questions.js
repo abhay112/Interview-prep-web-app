@@ -21,13 +21,19 @@ export const questions = [
     link: null,
     files: [
       {
-        heading: '',
+        heading: 'Methods of Promise',
+        language: 'js',
+        file: '/src/components/Javascript/PromiseFn.js',
+      },
+      {
+        heading: 'Promise with async and setTimeout',
         language: 'js',
         file: '/src/components/Javascript/PromiseAsyincSettimeout.js',
       },
     ],
     screenshots: [
-      '/assets/Javascript/PromiseAsyincSettimeout',
+      '/assets/Javascript/PromiseFn.png',
+      '/assets/Javascript/PromiseAsyincSettimeout.png',
     ]
   },
 
